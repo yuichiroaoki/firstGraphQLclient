@@ -28,16 +28,20 @@ query = gql(
 
 # Execute the query on the transport
 result = client.execute(query)
+
+#change the response into dataframe format
 df = pd.json_normalize(result, "Country")
-df.dropna()
+
+#remove rows and columns with Null/NaN values
+df = df.dropna()
 
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 
 
-fig = px.scatter(df, x="area", y="gini",
-                 size="population", hover_name="name",
+fig = px.scatter(df, x="area", y="population",
+                 size="gini", hover_name="name",
                  log_x=True, size_max=60)
 
 app.layout = html.Div([

@@ -40,8 +40,8 @@ external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 
 
-fig = px.scatter(df, x="area", y="population",
-                 size="gini", hover_name="name",
+fig = px.scatter(df, x="gini", y="area",
+                 size="population", hover_name="name",
                  log_x=True, size_max=60)
 
 app.layout = html.Div([
